@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ticket_app/base/app_styles.dart';
+import 'package:ticket_app/base/res/app_styles.dart';
 
 class TextStyleThird extends StatelessWidget {
   final String text;

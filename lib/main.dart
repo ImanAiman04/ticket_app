@@ -1,24 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:ticket_app/app_route.dart';
 import 'package:ticket_app/base/bottom_navbar.dart';
+import 'package:ticket_app/screens/all_tickets.dart';
+import 'package:ticket_app/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
-  var test = testClass(x: 4, y: 10);
-  print(test.y);
-
-  var newtest = test.copyWith(30, 40);
-  print(newtest.y);
-}
-
-class testClass {
-  int x;
-  int y;
-
-  testClass({required this.x, required this.y});
-
-  copyWith(int? x, int? y) {
-    return testClass(x: 5, y: 20);
-  }
 }
 
 class MyApp extends StatelessWidget {
@@ -28,12 +15,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: BottomNavbar(),
+      initialRoute: AppRoutes.home,
+      routes: {
+        AppRoutes.home:
+            (context) => const BottomNavbar(), // <-- Ini laluan utama
+        AppRoutes.allTickets: (context) => const AllTickets(),
+      },
     );
   }
 }
@@ -48,55 +39,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          FloatingActionButton(
-            onPressed: _decrementCounter,
-            tooltip: 'Decrement',
-            child: const Icon(Icons.remove),
-          ),
-          FloatingActionButton(
-            onPressed: _incrementCounter,
-            tooltip: 'Increment',
-            child: const Icon(Icons.add),
-          ),
-        ],
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const BottomNavbar(),
+      initialRoute: AppRoutes.home,
+      routes: {
+        AppRoutes.home: (context) => const HomeScreen(),
+        AppRoutes.allTickets: (context) => const AllTickets(),
+      },
     );
   }
 }
