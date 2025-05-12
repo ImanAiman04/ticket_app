@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ticket_app/app_route.dart';
-import 'package:ticket_app/base/res/app_styles.dart';
+import 'package:ticket_app/base/utils/app_route.dart';
+import 'package:ticket_app/base/res/styles/app_styles.dart';
 import 'package:ticket_app/base/widgets/app_double_test.dart';
 import 'package:ticket_app/screens/search/widgets/app_text_icon.dart';
 import 'package:ticket_app/screens/search/widgets/app_ticket_tabs.dart';
@@ -19,7 +19,7 @@ class SearchScreen extends StatelessWidget {
         children: [
           const SizedBox(height: 40),
           Text(
-            "What are\n you looking for?",
+            "What are\nyou looking for?",
             style: AppStyles.headLineStyle1.copyWith(),
           ),
           const SizedBox(height: 20),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ticket_app/base/res/app_styles.dart';
+import 'package:ticket_app/base/res/styles/app_styles.dart';
 
 class FindTickets extends StatelessWidget {
   const FindTickets({super.key});

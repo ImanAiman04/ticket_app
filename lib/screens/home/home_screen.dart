@@ -1,12 +1,13 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:ticket_app/base/res/app_styles.dart';
-import 'package:ticket_app/base/res/styles/media.dart';
+import 'package:ticket_app/base/res/styles/app_styles.dart';
+import 'package:ticket_app/base/res/media.dart';
 import 'package:ticket_app/base/widgets/app_double_test.dart';
+import 'package:ticket_app/base/widgets/heading_text.dart';
 import 'package:ticket_app/base/widgets/ticket_view.dart';
-import 'package:ticket_app/screens/hotel.dart';
+import 'package:ticket_app/screens/home/widgets/hotel.dart';
 import 'package:ticket_app/base/utils/all_json.dart';
-import 'package:ticket_app/app_route.dart';
+import 'package:ticket_app/base/utils/app_route.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,6 +22,7 @@ class HomeScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Text("Good morning", style: AppStyles.headLineStyle3),
                         const SizedBox(height: 5),
-                        Text("Book Tickets", style: AppStyles.headLineStyle1),
+                        HeadingText(text: "Book Tickets", isColor: false),
                       ],
                     ),
                     Container(
@@ -48,21 +50,21 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 25),
 
                 Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color(0xFFF4F6FD),
-                  ),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 12,
                   ),
-                  child: Row(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color(0xFFF4F6FD),
+                  ),
+                  child: const Row(
                     children: [
-                      const Icon(
+                      Icon(
                         FluentSystemIcons.ic_fluent_search_regular,
                         color: Color(0xFFBFC205),
                       ),
-                      Text("Search", style: AppStyles.headLineStyle4),
+                      Text("Search"),
                     ],
                   ),
                 ),
@@ -82,9 +84,20 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                     children:
                         ticketList
+                            .take(2)
                             .map(
-                              (singleTicket) =>
-                                  TicketView(ticket: singleTicket),
+                              (singleTicket) => GestureDetector(
+                                onTap: () {
+                                  var index = ticketList.indexOf(singleTicket);
+                                  print("I am tapped on the ticket $index");
+                                  Navigator.pushNamed(
+                                    context,
+                                    AppRoutes.ticketScreen,
+                                    arguments: {"index": index},
+                                  );
+                                },
+                                child: TicketView(ticket: singleTicket),
+                              ),
                             )
                             .toList(),
                   ),
@@ -95,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                   bigText: 'Hotels',
                   smallText: 'View all',
                   func: () {
-                    print("pushed");
+                    Navigator.pushNamed(context, AppRoutes.allHotels);
                   },
                 ),
                 const SizedBox(height: 20),
@@ -106,7 +119,19 @@ class HomeScreen extends StatelessWidget {
                     children:
                         hotelList
                             .take(2)
-                            .map((singleHotel) => Hotel(hotel: singleHotel))
+                            .map(
+                              (singleHotel) => GestureDetector(
+                                onTap: () {
+                                  var index = hotelList.indexOf(singleHotel);
+                                  Navigator.pushNamed(
+                                    context,
+                                    AppRoutes.hotelDetail,
+                                    arguments: {"index": index},
+                                  );
+                                },
+                                child: Hotel(hotel: singleHotel),
+                              ),
+                            )
                             .toList(),
                   ),
                 ),

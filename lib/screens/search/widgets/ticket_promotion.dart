@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ticket_app/base/res/app_styles.dart';
-import 'package:ticket_app/base/res/styles/media.dart';
+import 'package:ticket_app/base/res/styles/app_styles.dart';
+import 'package:ticket_app/base/res/media.dart';
 
 class TicketPromotion extends StatelessWidget {
   const TicketPromotion({super.key});
@@ -58,7 +58,7 @@ class TicketPromotion extends StatelessWidget {
                   width: size.width * .44,
                   height: 210,
                   decoration: BoxDecoration(
-                    color: const Color(0xFF3AB888),
+                    color: const Color(0xFF3AB8B8),
                     borderRadius: BorderRadius.circular(18),
                   ),
                   child: Column(
@@ -87,6 +87,7 @@ class TicketPromotion extends StatelessWidget {
                   right: -45,
                   top: -40,
                   child: Container(
+                    padding: EdgeInsets.all(30),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
@@ -114,6 +115,17 @@ class TicketPromotion extends StatelessWidget {
                     style: AppStyles.headLineStyle2.copyWith(
                       color: Colors.white,
                     ),
+                  ),
+                  SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("😍", style: TextStyle(fontSize: 30)),
+                      SizedBox(width: 5),
+                      Text("🥰", style: TextStyle(fontSize: 50)),
+                      SizedBox(width: 5),
+                      Text("😘", style: TextStyle(fontSize: 30)),
+                    ],
                   ),
                 ],
               ),

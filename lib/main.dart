@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ticket_app/app_route.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:ticket_app/base/utils/app_route.dart';
 import 'package:ticket_app/base/bottom_navbar.dart';
 import 'package:ticket_app/screens/all_tickets.dart';
-import 'package:ticket_app/screens/home_screen.dart';
+import 'package:ticket_app/screens/home/all_hotels.dart';
+import 'package:ticket_app/screens/home/home_screen.dart';
+import 'package:ticket_app/screens/hotel_detail.dart';
+import 'package:ticket_app/screens/ticket/ticket_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,17 +17,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      initialRoute: AppRoutes.home,
       routes: {
-        AppRoutes.home:
-            (context) => const BottomNavbar(), // <-- Ini laluan utama
+        AppRoutes.home: (context) => BottomNavBar(),
         AppRoutes.allTickets: (context) => const AllTickets(),
+        AppRoutes.ticketScreen: (context) => const TicketScreen(),
+        AppRoutes.allHotels: (context) => const AllHotels(),
+        AppRoutes.hotelDetail: (context) => const HotelDetail(),
       },
     );
   }
@@ -43,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const BottomNavbar(),
+      home: BottomNavBar(),
       initialRoute: AppRoutes.home,
       routes: {
         AppRoutes.home: (context) => const HomeScreen(),
